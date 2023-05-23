@@ -1,0 +1,5 @@
+($ my-node
+   :shape "ellipse"
+   :fontcolor #x990000
+   :color #x990000)
+

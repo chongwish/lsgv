@@ -1,0 +1,8 @@
+($ my-node
+   :shape "circle"
+   :style "filled"
+   :color #x009900)
+
+($ my-line
+   :arrowhead "none"
+   :style "dashed")

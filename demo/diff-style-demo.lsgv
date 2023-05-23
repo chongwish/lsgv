@@ -1,0 +1,5 @@
+(+@ :type my-node
+    a b c d e)
+
+(-> :type my-line
+    a (b (c d) e))
