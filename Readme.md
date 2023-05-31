@@ -90,6 +90,9 @@ The color of line can be calculated dynamically:
    - `:fontcolor-ratio`: the ratio of fontcolor
    - `:filled-color-ratio`: the ratio of filled color
    - `:color-ratio`: the ratio of color
+   - `:fontcolor-offset`: the offset of fontcolor
+   - `:filled-color-ratio`: the offset of filled color
+   - `:color-ratio`: the offset of color
    - `:override`: the method of color override
 4. `=@`: Rank
 5. `->`: Line
