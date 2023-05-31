@@ -134,6 +134,8 @@
               (penwidth (get-face-penwidth entry))
               (label (get-face-label entry))
               (color (get-face-color entry))
+              (dir (get-hash-table entry ':dir "normal"))
+              (constraint (get-hash-table entry ':constraint 'true))
               (relation (get-hash-table entry ':relation '())))
           ;; dynamic calculate
           (unless (null? relation)
@@ -141,13 +143,13 @@
                    (set! color (get-hash-table node-color-container from default-face-color-rgb)))
                   ((equal? relation 'child)
                    (set! color (get-hash-table node-color-container to default-face-color-rgb)))))
-          (print-line from to label color style penwidth arrowhead)))))
+          (print-line from to label color style penwidth arrowhead constraint dir)))))
 
 (define (print-node name label shape style color fontcolor)
   (display (format "  \"~s\" [label = ~s, shape = ~s, style = ~s, color = ~s, fontcolor = ~s];~%" name label shape style color fontcolor)))
 
-(define (print-line from to label color style penwidth arrowhead)
-  (display (format "  \"~s\" -> \"~s\" [label = ~s, fontcolor = ~s, color = ~s, style = ~s, penwidth = ~s, arrowhead = ~s];~%" from to label color color style penwidth arrowhead)))
+(define (print-line from to label color style penwidth arrowhead constraint dir)
+  (display (format "  \"~s\" -> \"~s\" [label = ~s, fontcolor = ~s, color = ~s, style = ~s, penwidth = ~s, arrowhead = ~s, constraint = ~s, dir = ~s];~%" from to label color color style penwidth arrowhead constraint dir)))
 
 ;; color override, dynamic calculate color, filled-color, fontcolor
 ;; for example:
