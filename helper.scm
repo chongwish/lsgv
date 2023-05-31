@@ -77,14 +77,21 @@
     (set! rainbow-color (merge-color colors))
     rainbow-color))
 
-;; #(0 90 60) 0.5 => #(0 45 30)
-(define (calc-ratio-color ratio color)
+(define (calc-color fn color)
   (let ((colors (split-color color)))
     (merge-color
      (vector-map
       (lambda (n)
-        (let ((result (exact (floor (* n ratio)))))
+        (let ((result (exact (floor (fn n)))))
           (cond ((> result #xff) #xff)
                 ((< result 0) 0)
                 (else result))))
       colors))))
+
+;; #(0 90 60) 0.5 => #(0 45 30)
+(define (calc-ratio-color ratio color)
+  (calc-color (lambda (n) (* n ratio)) color))
+
+;; #(0 90 60) 30 => (0 120 90)
+(define (calc-offset-color offset color)
+  (calc-color (lambda (n) (+ n offset)) color))

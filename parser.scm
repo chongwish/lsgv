@@ -42,7 +42,7 @@
 (define (lsgv-parse-rank content)
   (display "  {\n")
   (display "    rank = same;\n")
-  (for-each (lambda (i) (display (format "    ~s;~%" i))) content)
+  (for-each (lambda (i) (display (format "    \"~s\";~%" i))) content)
   (display "  }\n"))
 
 ;; style parser
@@ -144,10 +144,10 @@
           (print-line from to label color style penwidth arrowhead)))))
 
 (define (print-node name label shape style color fontcolor)
-  (display (format "  ~s [label = ~s, shape = ~s, style = ~s, color = ~s, fontcolor = ~s];~%" name label shape style color fontcolor)))
+  (display (format "  \"~s\" [label = ~s, shape = ~s, style = ~s, color = ~s, fontcolor = ~s];~%" name label shape style color fontcolor)))
 
 (define (print-line from to label color style penwidth arrowhead)
-  (display (format "  ~s -> ~s [label = ~s, fontcolor = ~s, color = ~s, style = ~s, penwidth = ~s, arrowhead = ~s];~%" from to label color color style penwidth arrowhead)))
+  (display (format "  \"~s\" -> \"~s\" [label = ~s, fontcolor = ~s, color = ~s, style = ~s, penwidth = ~s, arrowhead = ~s];~%" from to label color color style penwidth arrowhead)))
 
 ;; color override, dynamic calculate color, filled-color, fontcolor
 ;; for example:
@@ -158,6 +158,9 @@
 (define (refresh-face-color entry)
   (let ((override (get-hash-table entry ':override '()))
         (rainbow-fontcolor (get-hash-table entry ':rainbow-fontcolor '()))
+        (fontcolor-offset (get-hash-table entry ':fontcolor-offset '()))
+        (filled-color-offset (get-hash-table entry ':filled-color-offset '()))
+        (color-offset (get-hash-table entry ':color-offset '()))
         (fontcolor-ratio (get-hash-table entry ':fontcolor-ratio '()))
         (filled-color-ratio (get-hash-table entry ':filled-color-ratio '()))
         (color-ratio (get-hash-table entry ':color-ratio '())))
@@ -171,7 +174,17 @@
            (put-hash-table! entry k (calc-ratio-color v (get-hash-table entry ':color #x000000))))))
      (list (cons ':fontcolor fontcolor-ratio)
            (cons ':filled-color filled-color-ratio)
-           (cons ':color color-ratio)))))
+           (cons ':color color-ratio)))
+    (for-each
+     (lambda (pair)
+       (let ((k (car pair))
+             (v (cdr pair)))
+         (unless (null? v)
+           (put-hash-table! entry k (calc-offset-color v (get-hash-table entry ':color #x000000))))))
+     (list (cons ':fontcolor fontcolor-offset)
+           (cons ':filled-color filled-color-offset)
+           (cons ':color color-offset)))
+    ))
 
 ;; get color string
 ;; 1. "#336699"
