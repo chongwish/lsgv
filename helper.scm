@@ -27,8 +27,8 @@
   (let ((red (vector-ref color 0))
         (green (vector-ref color 1))
         (blue (vector-ref color 2)))
-    (cond ((and (> red green) (> red blue)) 0)
-          ((and (> green red) (> green blue)) 1)
+    (cond ((and (>= red green) (>= red blue)) 0)
+          ((and (>= green red) (>= green blue)) 1)
           (else 2))))
 
 ;; #x90 18 => #x30
@@ -95,3 +95,11 @@
 ;; #(0 90 60) 30 => (0 120 90)
 (define (calc-offset-color offset color)
   (calc-color (lambda (n) (+ n offset)) color))
+
+(define (calc-fix-offset-blue-color offset color)
+  (let ((colors (split-color color)))
+    (let ((index (calc-current-index colors)))
+      (if (= index 2)
+          (calc-offset-color offset color)
+          '()))))
+

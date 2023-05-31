@@ -3,6 +3,7 @@
                 :override (rainbow-color)
                 :fontcolor-ratio 0.8
                 :filled-color-ratio 1.6
+                :fix-fontcolor-blue-offset #x90
                 :style "filled,radial"))
 
 (lsgv-parse '($ rainbow-node

@@ -158,6 +158,7 @@
 (define (refresh-face-color entry)
   (let ((override (get-hash-table entry ':override '()))
         (rainbow-fontcolor (get-hash-table entry ':rainbow-fontcolor '()))
+        (fix-fontcolor-blue-offset (get-hash-table entry ':fix-fontcolor-blue-offset '()))
         (fontcolor-offset (get-hash-table entry ':fontcolor-offset '()))
         (filled-color-offset (get-hash-table entry ':filled-color-offset '()))
         (color-offset (get-hash-table entry ':color-offset '()))
@@ -184,6 +185,10 @@
      (list (cons ':fontcolor fontcolor-offset)
            (cons ':filled-color filled-color-offset)
            (cons ':color color-offset)))
+    (unless (null? fix-fontcolor-blue-offset)
+      (let ((fontcolor (calc-fix-offset-blue-color fix-fontcolor-blue-offset (get-hash-table entry ':color #x000000))))
+        (unless (null? fontcolor)
+          (put-hash-table! entry ':fontcolor fontcolor))))
     ))
 
 ;; get color string
