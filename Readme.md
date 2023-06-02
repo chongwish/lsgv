@@ -2,6 +2,13 @@
 
 **Lsgv: List Style Graphviz**
 
+## Todo
+
+- Support Cluster
+- Parser Preprocessing
+- Secondary Parser Symbol
+- Customize Global Style
+
 ## Feature
 
 ### To present data as list
@@ -92,6 +99,7 @@ The color of line can be calculated dynamically:
    - `:color-ratio`: the ratio of color
    - `:fontcolor-offset`: the offset of fontcolor
    - `:filled-color-ratio`: the offset of filled color
+   - `:fix-fontcolor-blue-offset`:the offset of blue
    - `:color-ratio`: the offset of color
    - `:override`: the method of color override
 4. `=@`: Rank
