@@ -54,7 +54,11 @@
         (ht (make-hash-table)))
     (let fn ((attributes (cdr content)))
       (unless (null? attributes)
-        (put-hash-table! ht (car attributes) (cadr attributes))
+        (let ((k (car attributes))
+              (v (cadr attributes)))
+          (if (equal? k ':type)
+              (set! ht (merge-hash-table (get-hash-table face-container v '()) ht))
+              (put-hash-table! ht k v)))
         (fn (cddr attributes))))
     (put-hash-table! face-container name ht)))
 
@@ -137,6 +141,7 @@
                to))
             (let ((style (get-face-style entry))
                   (arrowhead (get-face-arrowhead entry))
+                  (arrowtail (get-face-arrowtail entry))
                   (penwidth (get-face-penwidth entry))
                   (label (get-face-label entry))
                   (color (get-face-color entry))
@@ -149,13 +154,13 @@
                        (set! color (get-hash-table node-color-container from default-face-color-rgb)))
                       ((equal? relation 'child)
                        (set! color (get-hash-table node-color-container to default-face-color-rgb)))))
-              (print-line from to label color style penwidth arrowhead constraint dir))))))
+              (print-line from to label color style penwidth arrowhead arrowtail constraint dir))))))
 
 (define (print-node name label shape style color fontcolor)
   (display (format "  \"~s\" [label = ~s, shape = ~s, style = ~s, color = ~s, fontcolor = ~s];~%" name label shape style color fontcolor)))
 
-(define (print-line from to label color style penwidth arrowhead constraint dir)
-  (display (format "  \"~s\" -> \"~s\" [label = ~s, fontcolor = ~s, color = ~s, style = ~s, penwidth = ~s, arrowhead = ~s, constraint = ~s, dir = ~s];~%" from to label color color style penwidth arrowhead constraint dir)))
+(define (print-line from to label color style penwidth arrowhead arrowtail constraint dir)
+  (display (format "  \"~s\" -> \"~s\" [label = ~s, fontcolor = ~s, color = ~s, style = ~s, penwidth = ~s, arrowhead = ~s, arrowtail = ~s, constraint = ~s, dir = ~s];~%" from to label color color style penwidth arrowhead arrowtail constraint dir)))
 
 ;; color override, dynamic calculate color, filled-color, fontcolor
 ;; for example:
@@ -240,6 +245,12 @@
     (if (null? face-arrowhead)
         default-face-arrowhead
         face-arrowhead)))
+
+(define (get-face-arrowtail entry)
+  (let ((face-arrowtail (get-hash-table entry ':arrowtail '())))
+    (if (null? face-arrowtail)
+        default-face-arrowtail
+        face-arrowtail)))
 
 (define (get-face-label entry)
   (let ((face-label (get-hash-table entry ':label '())))

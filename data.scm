@@ -3,11 +3,12 @@
 (define head-container (make-hash-table))
 
 (define default-face-color-rgb "#000000")
-(define default-face-fontcolor-rgb "#FFFFFF")
+(define default-face-fontcolor-rgb "#000000")
 (define default-face-style "")
 (define default-face-shepe "")
 (define default-face-penwidth "")
 (define default-face-arrowhead "")
+(define default-face-arrowtail "")
 
 (define rainbow-color-container '())
 ;; rainbow init color
