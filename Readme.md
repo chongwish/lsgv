@@ -15,6 +15,7 @@
 
 ```scheme
 (-> a b)
+(-> (a b) c)
 (-> a (b c (e f) d))
 ```
 
@@ -61,13 +62,23 @@ The color of line can be calculated dynamically:
 
 ### Predefine a style for project
 
+#### project style
+
 ```scheme
-(+@ :type project-feature-node
-    (feature1 "How to do?")
-    (feature2 "What is it?"))
+(+@ :type core
+    core)
 ```
 
 ![](demo/project-demo.svg)
+
+#### simple project style
+
+```scheme
+(+@ :type simple-core
+    core)
+```
+
+![](demo/simple-project-demo.svg)
 
 ## Usage
 
@@ -106,6 +117,7 @@ The color of line can be calculated dynamically:
 5. `->`: Line
    - `:style`: graphviz style
    - `:arrowhead`: graphviz arrowhead
+   - `:arrowtail`: graphviz arrowtail
    - `:penwidth`: graphviz penwidth
    - `:label`: graphviz label
    - `:color`: graphviz color

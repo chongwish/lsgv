@@ -1,0 +1,32 @@
+(! :layout "dot" :splines "true")
+
+(+@ :type simple-core core)
+(+@ :type simple-machine machine)
+(+@ :type simple-program program)
+(+@ :type simple-signature signature)
+(+@ :type simple-note note)
+(+@ :type simple-feature feature)
+(+@ :type simple-component component)
+(+@ :type simple-folder folder)
+(+@ :type simple-function function)
+(+@ :type simple-test test)
+(+@ :type simple-file file)
+(+@ :type simple-data data)
+
+(-> :type mean :label "mean"
+    core (machine program (function)))
+
+(-> :type has :label "has"
+    machine (component feature))
+
+(-> :type use :label "use"
+    folder (file data))
+
+(-> :type make :label "make"
+    program (file data))
+
+(-> :type grow :label "grow"
+    core (test signature))
+
+(-> :type grow :label "grow"
+    note function)

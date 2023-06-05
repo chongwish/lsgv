@@ -1,70 +1,32 @@
-(+@ :type project-core-node
-    (project1 "My First\nProject")
-    (project2 "Third Project")
-    (project3 "Third Library"))
+(! :layout "dot" :splines "true")
 
-(+@ :type project-feature-node
-    (feature1 "How to do?")
-    (feature2 "What is it?"))
+(+@ :type core core)
+(+@ :type machine machine)
+(+@ :type program program)
+(+@ :type signature signature)
+(+@ :type note note)
+(+@ :type feature feature)
+(+@ :type component component)
+(+@ :type folder folder)
+(+@ :type function function)
+(+@ :type test test)
+(+@ :type file file)
+(+@ :type data data)
 
-(+@ :type project-component-node
-    (component1 "Java Component")
-    (component2 "Clojure Component"))
+(-> :type mean :label "mean"
+    core (machine program (function)))
 
-(+@ :type project-package-node
-    (package1 "Java Src")
-    (package2 "Java Test")
-    (package3 "Clojure Src")
-    (package4 "Clojure Test"))
+(-> :type has :label "has"
+    machine (component feature))
 
-(+@ :type project-folder-node
-    (folder1 "Model")
-    (folder2 "Service")
-    (folder3 "Controller")
-    (folder4 "Algorthm")
-    (folder5 "Interface")
-    (folder6 "Provider"))
+(-> :type use :label "use"
+    folder (file data))
 
-(+@ :type project-test-node
-    (test1 "Unit Test")
-    (test2 "Inegeration Test")
-    (test3 "Unit Test")
-    (test4 "Inegeration Test"))
+(-> :type make :label "make"
+    program (file data))
 
-(+@ :type project-function-node
-    (function1 "Main Service"))
+(-> :type grow :label "grow"
+    core (test signature))
 
-(+@ :type project-note-node
-    (note1 "int main() {\n  return 0;\n}"))
-
-(+@ :type project-data-node
-    (data1 "MySQL")
-    (data2 "Redis"))
-
-(-> :type project-derive-line feature1 project1)
-
-(-> :type project-derive-line feature2 project1)
-
-(-> :type project-depend-line project1 (project2 project3))
-
-(-> :type project-contain-line
-    project1 (component1 (package1 (folder1 folder2 (function1) folder3 folder6)
-                          package2)
-              component2 (package3 (folder4 folder5)
-                          package4)))
-
-(-> :type project-use-line folder4 folder5)
-
-(-> :type project-use-line folder1 (folder6 (data1 data2)))
-
-(-> :type project-use-line folder2 folder5)
-
-(-> :type project-mean-line package2 (test1 test2))
-
-(-> :type project-mean-line package4 (test3 test4))
-
-(-> :type project-mean-line function1 note1)
-
-(=@ project1 project2 project3)
-
-(=@ folder2 folder5 folder6 folder1 folder4)
+(-> :type grow :label "grow"
+    note function)
