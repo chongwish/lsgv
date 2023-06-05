@@ -32,6 +32,11 @@
 
 Different style for the data:
 
+```bash
+lsgv green-style.lsgvs diff-style-demo.lsgv
+lsgv red-style.lsgvs diff-style-demo.lsgv
+```
+
 ![](demo/green-style-demo.svg)
 ![](demo/red-style-demo.svg)
 
@@ -79,6 +84,14 @@ The color of line can be calculated dynamically:
 ```
 
 ![](demo/simple-project-demo.svg)
+
+#### override style
+
+```bash
+lsgv drop-color.lsgvs project-demo.lsgv
+```
+
+![](demo/drop-color-project-demo.svg)
 
 ## Usage
 
