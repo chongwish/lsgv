@@ -47,7 +47,7 @@ Different style for the data:
 The node can calculate the color dynamically:
 
 ```scheme
-(+@ :type rainbow-node
+(+@ :type rainbow
     h i j)
 ```
 
