@@ -1,33 +1,33 @@
 (! :layout "fdp" :sep "1" :splines "polyline" :rainbow-color #x7F0000)
 
-(+@ :type rainbow-halo-node :shape "circle"
+(+@ :type rainbow-halo :shape "circle"
     a b c d e f g)
 
-(+@ :type rainbow-node
+(+@ :type rainbow
     h i j)
 
-(+@ :type rainbow-simple-node
+(+@ :type rainbow-simple
     k l)
 
-(+@ :type rainbow-node :style "filled,radial" :shape "egg" :fontcolor-ratio 4 :filled-color-ratio 1.5
+(+@ :type rainbow :style "filled,radial" :shape "egg" :fontcolor-ratio 4 :filled-color-ratio 1.5
     m n)
 
-(-> :type rainbow-halo-line
+(-> :type grow
     a (b c d e f g))
 
-(-> :type rainbow-halo-line
+(-> :type grow
     b (a c d e f g))
 
-(-> :type rainbow-halo-line
+(-> :type grow
     c (a b d e f g))
 
-(-> :type rainbow-line
+(-> :type use
     d (a b c e f g))
 
-(-> :type rainbow-line
+(-> :type use
     h (i j k l m n))
 
-(-> :type rainbow-line
+(-> :type has
     m (i h j k l n))
 
 (-> :style "dotted" :penwidth "2" :arrowhead "none"
