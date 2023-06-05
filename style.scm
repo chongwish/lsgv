@@ -107,8 +107,8 @@
    :shape "ellipse")
 
 ($ component
-   :color #xFF7A9B
-   :filled-color #xFF7AFF
+   :color #xFF7AFF
+   :filled-color #xFF7A9B
    :fontcolor #x7F0000
    :shape "component"
    :style "filled")
