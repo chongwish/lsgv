@@ -1,11 +1,18 @@
-($ core)
-($ program :type simple-program)
-($ signature)
-($ note)
-($ feature)
-($ component)
-($ folder)
-($ function)
-($ test)
-($ file)
-($ data)
+($ no-color
+   :color #x000000
+   :fontcolor #x000000
+   :filled-color #x000000
+   :style "")
+
+($ core :type no-color :type core)
+($ machine :type no-color :type machine)
+($ program :type no-color :type program)
+($ signature :type no-color :type signature)
+($ note :type no-color :type note)
+($ feature :type no-color :type feature)
+($ component :type no-color :type component)
+($ folder :type no-color :type folder)
+($ function :type no-color :type function)
+($ test :type no-color :type test)
+($ file :type no-color :type file)
+($ data :type no-color :type data)
